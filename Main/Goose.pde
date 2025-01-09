@@ -1,4 +1,4 @@
-class Goose{
+  public class Goose{
   int X;
   int Y;
   int l, h;
