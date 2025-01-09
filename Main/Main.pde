@@ -3,11 +3,12 @@ Goose goose;
 void setup(){
   size(640, 640);
   
-  goose = new Goose(320, 320, 100, 100);
+  goose = new Goose();
 }
 
 void draw(){
   goose.draw();
+  clear();
   goose.sistemGravity();
  
 }
