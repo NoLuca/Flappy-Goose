@@ -1,40 +1,29 @@
-  public class Goose{
-  int X;
-  int Y;
-  int l, h;
-  float velocityY = 0; 
-  float gravity = 0.1f;
-  boolean falling = true; 
-  
-  public Goose(int X, int Y, int l, int h){
-      this.X = X; 
-      this.Y = Y;
-      this.l = l;
-      this.h = h; 
-  }
-  void display(){
-    ellipseMode(CENTER);
-    ellipse(X, Y, l, h);
-  }
-  
-  void move(){
-    this.X++;
-  }
-  
-   
-    void gravity() {
-        if (falling) {
-           
-            velocityY += gravity; 
-            this.Y += velocityY;
+class Goose {
+  float x, y, width, height;
+  float velocity = 0;
+  float gravity = 0.6;
+  float flapStrength = -10;
 
-            
-            if (this.Y > 640-50) { 
-                this.Y = 640-50;
-                velocityY = 0; 
-                falling = false; 
-            }
-        }
-    }
+  Goose(float x, float y, float width, float height) {
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+  }
 
+  void sistemGravity() {
+    velocity += gravity;
+    y += velocity;
+  }
+
+  void draw() {
+    fill(255);
+    ellipse(x, y, width, height);
+  }
+
+  void flap() {
+    velocity = flapStrength;
+  }
 }
+
+ 
