@@ -10,7 +10,4 @@ void draw(){
   goose.display();
   goose.move();
   goose.gravity();
-  
- 
 }
-
