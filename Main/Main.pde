@@ -8,7 +8,6 @@ void setup(){
 
 void draw(){
   goose.draw();
-  clear();
   goose.sistemGravity();
  
 }
