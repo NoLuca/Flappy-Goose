@@ -1,4 +1,4 @@
-class Goose {
+class Goose{
   float x = 320;
   float y = 100;
   float velocity = 0;
@@ -8,15 +8,15 @@ class Goose {
   final int COSTANT_BODY_GOOSE = 3;
   boolean gravityEnabled = true;
 
-  void sistemGravity(boolean thereIsGravity) {
+  void sistemGravity(boolean thereIsGravity){
     gravityEnabled = thereIsGravity;
-    if (!gravityEnabled) {
+    if(!gravityEnabled){
       velocity = 0; // Ferma il movimento
     }
   }
 
-  void draw() {
-    if (gravityEnabled) {
+  void draw(){
+    if(gravityEnabled){
       velocity += gravity;
       y += velocity;
     }
@@ -35,8 +35,8 @@ class Goose {
     rect(x + 17, y + dimensionOfGoose * 6, 13, 2); // Piede
   }
 
-  void flap() {
-    if (gravityEnabled) {
+  void flap(){
+    if(gravityEnabled){
       velocity = flapStrength; // Salto verso l'alto
     }
   }

@@ -1,17 +1,17 @@
 class ObstacleManager{
-    private ArrayList<Obstacle> obstacles;
-    private int spawnInterval;
+    ArrayList<Obstacle> obstacles;
+    int spawnInterval;
 
-    public ObstacleManager(){
+    ObstacleManager(){
         obstacles = new ArrayList<Obstacle>();
         nextSpawn();
     }
 
-    private void nextSpawn(){
+    void nextSpawn(){
         spawnInterval = millis() + (int)random(500, 2000);
     }
 
-    public void update(boolean isPaused){
+    void update(boolean isPaused){
         if(isPaused){
             return;
         }
@@ -41,13 +41,13 @@ class ObstacleManager{
         }
     }
 
-    public void draw(){
+    void draw(){
         for(Obstacle o : obstacles){
             o.draw();
         }
     }
 
-    private void gameOver(){
+    void gameOver(){
         fill(255, 0, 0);
         textSize(50);
         textAlign(CENTER, CENTER);

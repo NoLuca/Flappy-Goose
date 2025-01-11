@@ -1,12 +1,12 @@
 class Obstacle{
-    private float x;
-    private float y;
-    private float size;
-    private float speedX;
-    private float speedY;
-    private color obstacleColor;
+    float x;
+    float y;
+    float size;
+    float speedX;
+    float speedY;
+    color obstacleColor;
 
-    public Obstacle(){
+    Obstacle(){
         size = random(20, 50);
         x = width;
         y = random(height);
@@ -15,13 +15,13 @@ class Obstacle{
         obstacleColor = color(random(255), random(255), random(255));
     }
 
-    public void draw(){
+    void draw(){
         fill(obstacleColor);
         noStroke();
         rect(x, y, size, size);
     }
 
-    public void update(){
+    void update(){
         x += speedX;
         y += speedY;
 
@@ -30,7 +30,7 @@ class Obstacle{
         }
     }
 
-    public boolean isOffScreen(){
+    boolean isOffScreen(){
         return x + size < 0;
     }
     
