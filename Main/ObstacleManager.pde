@@ -11,7 +11,11 @@ class ObstacleManager{
         spawnInterval = millis() + (int)random(500, 2000);
     }
 
-    public void update(){
+    public void update(boolean isPaused){
+        if(isPaused){
+            return;
+        }
+        
         if(millis() > spawnInterval){
             obstacles.add(new Obstacle());
             nextSpawn();
