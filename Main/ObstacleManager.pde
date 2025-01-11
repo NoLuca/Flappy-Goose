@@ -15,7 +15,7 @@ class ObstacleManager{
         if(isPaused){
             return;
         }
-        
+
         if(millis() > spawnInterval){
             obstacles.add(new Obstacle());
             nextSpawn();
@@ -34,6 +34,10 @@ class ObstacleManager{
             if(o.isOffScreen()){
                 obstacles.remove(i);
             }
+        }
+
+        if(goose.isOffScreen()){
+            gameOver();
         }
     }
 

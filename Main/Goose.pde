@@ -1,6 +1,6 @@
 class Goose {
   float x = 320;
-  float y = 320;
+  float y = 100;
   float velocity = 0;
   float gravity = 0.6;
   float flapStrength = -10;
@@ -43,5 +43,9 @@ class Goose {
 
   Collision getHitBox(){
     return new Collision(x, y, dimensionOfGoose * 9, dimensionOfGoose * COSTANT_BODY_GOOSE);
+  }
+
+  boolean isOffScreen(){
+    return y < 0 || y > height;
   }
 }
