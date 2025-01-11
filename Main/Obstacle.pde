@@ -33,4 +33,8 @@ class Obstacle{
     public boolean isOffScreen(){
         return x + size < 0;
     }
+    
+    Collision getHitBox(){
+        return new Collision(x, y, size, size);
+    }
 }

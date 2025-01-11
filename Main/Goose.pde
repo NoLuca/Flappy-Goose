@@ -40,4 +40,8 @@ class Goose {
       velocity = flapStrength; // Salto verso l'alto
     }
   }
+
+  Collision getHitBox(){
+    return new Collision(x, y, dimensionOfGoose * 9, dimensionOfGoose * COSTANT_BODY_GOOSE);
+  }
 }

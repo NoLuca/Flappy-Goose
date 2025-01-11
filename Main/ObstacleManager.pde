@@ -20,7 +20,12 @@ class ObstacleManager{
         for(int i = obstacles.size() - 1; i >= 0; i--){
             Obstacle o = obstacles.get(i);
             o.update();
-            o.draw();
+            //o.draw();
+
+            if(o.getHitBox().intersects(goose.getHitBox())){
+                gameOver();
+                return;
+            }
 
             if(o.isOffScreen()){
                 obstacles.remove(i);
@@ -32,5 +37,13 @@ class ObstacleManager{
         for(Obstacle o : obstacles){
             o.draw();
         }
+    }
+
+    private void gameOver(){
+        fill(255, 0, 0);
+        textSize(50);
+        textAlign(CENTER, CENTER);
+        text("Game Over", width / 2, height / 2);
+        noLoop();
     }
 }
