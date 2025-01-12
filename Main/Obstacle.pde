@@ -7,18 +7,31 @@ class Obstacle{
     color obstacleColor;
 
     Obstacle(){
-        size = random(20, 50);
+        size = random(50, 75);
         x = width;
         y = random(height);
         speedX = random(-3, -1.5);
         speedY = random(-1, 1);
-        obstacleColor = color(random(255), random(255), random(255));
+        obstacleColor = color(60, 50, 46);
     }
 
     void draw(){
+        fill(255, 30, 0);
+        triangle(x, y-size/2, x, y+size/2, x+size*2, y);
+      
+        fill(255, 165, 0);
+        triangle(x, y-size/2, x, y+size/2, x+size, y);
+      
+       
+        
+        
+        
         fill(obstacleColor);
         noStroke();
-        rect(x, y, size, size);
+        ellipse(x, y, size, size);
+        
+        
+        
     }
 
     void update(){
@@ -34,7 +47,7 @@ class Obstacle{
         return x + size < 0;
     }
     
-    Collision getHitBox(){
-        return new Collision(x, y, size, size);
-    }
+    Collision getHitBox() {
+    return new Collision(x, y, size, size, true);
+}
 }

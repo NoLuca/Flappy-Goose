@@ -42,7 +42,7 @@ class Goose{
   }
 
   Collision getHitBox(){
-    return new Collision(x, y, dimensionOfGoose * 9, dimensionOfGoose * COSTANT_BODY_GOOSE);
+    return new Collision(x, y, dimensionOfGoose * 9, dimensionOfGoose * COSTANT_BODY_GOOSE, false);
   }
 
   boolean isOffScreen(){
