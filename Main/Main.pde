@@ -1,3 +1,4 @@
+PImage image;
 Goose goose;
 Pause pause;
 ObstacleManager manager;
@@ -10,10 +11,11 @@ void setup(){
   manager = new ObstacleManager();
   goose = new Goose();
   pause = new Pause(goose);
+  image = loadImage("background.png");
 }
 
 void draw(){  
-  background(0);
+    background(image);
 
   if(!countdownActive){
     manager.update(pause.isPaused());
