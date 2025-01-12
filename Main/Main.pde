@@ -19,7 +19,7 @@ void setup(){
 }
 
 void draw(){  
-    background(image);
+  background(image);
 
   if(!countdownActive){
     gameOver = manager.update(pause.isPaused());
