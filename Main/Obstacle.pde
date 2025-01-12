@@ -22,23 +22,16 @@ class Obstacle{
         fill(255, 165, 0);
         triangle(x, y-size/2, x, y+size/2, x+size, y);
       
-       
-        
-        
-        
         fill(obstacleColor);
         noStroke();
         ellipse(x, y, size, size);
-        
-        
-        
     }
 
     void update(){
         x += speedX;
         y += speedY;
 
-        if (y < 0 || y + size > height) {
+        if(y < 0 || y + size > height){
             speedY *= -1;
         }
     }
@@ -47,7 +40,7 @@ class Obstacle{
         return x + size < 0;
     }
     
-    Collision getHitBox() {
-    return new Collision(x, y, size, size, true);
-}
+    Collision getHitBox(){
+        return new Collision(x, y, size, size, true);
+    }
 }

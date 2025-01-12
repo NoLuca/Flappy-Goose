@@ -19,7 +19,7 @@ void setup(){
 }
 
 void draw(){  
-    background(image);
+  background(image);
 
   if(!countdownActive){
     gameOver = manager.update(pause.isPaused());
@@ -31,9 +31,9 @@ void draw(){
 
     if(gameOver){
       fill(255, 255, 255);
-        textSize(50);
-        textAlign(CENTER, CENTER);
-        text(survivalTime + "s", width / 2, height / 2 + 50);
+      textSize(50);
+      textAlign(CENTER, CENTER);
+      text(survivalTime + "s", width / 2, height / 2 + 50);
       noLoop();
     }
 
