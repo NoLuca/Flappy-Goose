@@ -5,6 +5,10 @@ boolean countdownActive = false;
 int countdown = 3; 
 int countdownStartTime;
 
+int survivalTime = 0;
+int lastTimeUpdate = 0;
+boolean gameOver = false;
+
 void setup(){
   size(640, 640);
   manager = new ObstacleManager();
@@ -16,11 +20,24 @@ void draw(){
   background(0);
 
   if(!countdownActive){
-    manager.update(pause.isPaused());
+    gameOver = manager.update(pause.isPaused());
+    
+    if (!pause.isPaused() && millis() - lastTimeUpdate >= 1000) {
+      survivalTime++;
+      lastTimeUpdate = millis();
+    }
+
+    if(gameOver){
+      fill(255, 255, 255);
+        textSize(50);
+        textAlign(CENTER, CENTER);
+        text(survivalTime + "s", width / 2, height / 2 + 50);
+      noLoop();
+    }
+
     manager.draw();
     goose.draw();
     pause.draw();
-    
   }else{
     int elapsed = (millis() - countdownStartTime) / 1000;
     int timeLeft = countdown - elapsed; 

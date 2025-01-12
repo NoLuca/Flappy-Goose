@@ -8,12 +8,12 @@ class ObstacleManager{
     }
 
     void nextSpawn(){
-        spawnInterval = millis() + (int)random(500, 2000);
+        spawnInterval = millis() + (int)random(150, 1000);
     }
 
-    void update(boolean isPaused){
+    boolean update(boolean isPaused){
         if(isPaused){
-            return;
+            return false;
         }
 
         if(millis() > spawnInterval){
@@ -24,11 +24,9 @@ class ObstacleManager{
         for(int i = obstacles.size() - 1; i >= 0; i--){
             Obstacle o = obstacles.get(i);
             o.update();
-            //o.draw();
 
             if(o.getHitBox().intersects(goose.getHitBox())){
-                gameOver();
-                return;
+                return gameOver();
             }
 
             if(o.isOffScreen()){
@@ -37,8 +35,10 @@ class ObstacleManager{
         }
 
         if(goose.isOffScreen()){
-            gameOver();
+            return gameOver();
         }
+        
+        return false;
     }
 
     void draw(){
@@ -47,11 +47,12 @@ class ObstacleManager{
         }
     }
 
-    void gameOver(){
+    boolean gameOver(){
         fill(255, 0, 0);
         textSize(50);
         textAlign(CENTER, CENTER);
         text("Game Over", width / 2, height / 2);
-        noLoop();
+
+        return true;
     }
 }
