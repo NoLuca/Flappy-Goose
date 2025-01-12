@@ -48,11 +48,6 @@ class ObstacleManager{
     }
 
     boolean gameOver(){
-        fill(255, 0, 0);
-        textSize(50);
-        textAlign(CENTER, CENTER);
-        text("Game Over", width / 2, height / 2);
-
         return true;
     }
 }

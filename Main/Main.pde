@@ -29,17 +29,35 @@ void draw(){
       lastTimeUpdate = millis();
     }
 
+      manager.draw();
+      goose.draw();
+      pause.draw();
+
     if(gameOver){
+      background(image);
       fill(255, 255, 255);
+      textSize(50);
+      textAlign(CENTER, CENTER);
+      text(survivalTime + "s", width / 2, height / 2 + 50);
+      
+      fill(255, 0, 0);
+      textSize(50);
+      textAlign(CENTER, CENTER);
+      text("Game Over", width / 2, height / 2);
+      if(survivalTime < 30){
         textSize(50);
         textAlign(CENTER, CENTER);
-        text(survivalTime + "s", width / 2, height / 2 + 50);
+        text(")-:", width / 2, height / 2 + 100);
+      }else{
+        fill(0, 255, 0);
+        textSize(50);
+        textAlign(CENTER, CENTER);
+        text("(-:", width / 2, height / 2 + 100);
+      }
       noLoop();
     }
 
-    manager.draw();
-    goose.draw();
-    pause.draw();
+    
   }else{
     int elapsed = (millis() - countdownStartTime) / 1000;
     int timeLeft = countdown - elapsed; 
