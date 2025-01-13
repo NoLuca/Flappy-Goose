@@ -2,13 +2,31 @@ class ObstacleManager{
     ArrayList<Obstacle> obstacles;
     int spawnInterval;
 
+    public ArrayList<Obstacle> getObstacles() {
+        return obstacles;
+    }
+
+    public int getSpawnInterval() {
+        return spawnInterval;
+    }
+
+    public void setObstacles(ArrayList<Obstacle> obstacles) {
+        this.obstacles = obstacles;
+    }
+
+    public void setSpawnInterval(int spawnInterval) {
+        this.spawnInterval = spawnInterval;
+    }
+    
+    
+
     ObstacleManager(){
         obstacles = new ArrayList<Obstacle>();
         nextSpawn();
     }
 
     void nextSpawn(){
-        spawnInterval = millis() + (int)random(150, 1000);
+        setSpawnInterval( millis() + (int)random(150, 1000));
     }
 
     boolean update(boolean isPaused){
@@ -17,19 +35,19 @@ class ObstacleManager{
         }
 
         if(millis() > spawnInterval){
-            obstacles.add(new Obstacle());
+           getObstacles().add(new Obstacle());
             nextSpawn();
         }
 
         for(int i = obstacles.size() - 1; i >= 0; i--){
-            Obstacle o = obstacles.get(i);
-            o.update();
+            Obstacle supportObstacles = getObstacles().get(i);
+            supportObstacles.update();
 
-            if(o.getHitBox().intersects(goose.getHitBox())){
+            if(supportObstacles.getHitBox().intersects(goose.getHitBox())){
                 return gameOver();
             }
 
-            if(o.isOffScreen()){
+            if(supportObstacles.isOffScreen()){
                 obstacles.remove(i);
             }
         }
@@ -42,8 +60,8 @@ class ObstacleManager{
     }
 
     void draw(){
-        for(Obstacle o : obstacles){
-            o.draw();
+        for(Obstacle supportObstacles : obstacles){
+            supportObstacles.draw();
         }
     }
 

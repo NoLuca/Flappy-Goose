@@ -18,33 +18,109 @@ void setup(){
   image = loadImage("background.png");
 }
 
-void draw(){  
-  background(image);
-
-  if(!countdownActive){
-    gameOver = manager.update(pause.isPaused());
-    
-    if (!pause.isPaused() && millis() - lastTimeUpdate >= 1000) {
-      survivalTime++;
-      lastTimeUpdate = millis();
+    public void setCountdown(int countdown) {
+        this.countdown = countdown;
     }
 
-      manager.draw();
-      goose.draw();
-      pause.draw();
+    public void setCountdownActive(boolean countdownActive) {
+        this.countdownActive = countdownActive;
+    }
+
+    public void setCountdownStartTime(int countdownStartTime) {
+        this.countdownStartTime = countdownStartTime;
+    }
+
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
+    }
+
+    public void setGoose(Goose goose) {
+        this.goose = goose;
+    }
+
+    public void setImage(PImage image) {
+        this.image = image;
+    }
+
+    public void setLastTimeUpdate(int lastTimeUpdate) {
+        this.lastTimeUpdate = lastTimeUpdate;
+    }
+
+    public void setManager(ObstacleManager manager) {
+        this.manager = manager;
+    }
+
+    public void setPause(Pause pause) {
+        this.pause = pause;
+    }
+
+    public void setSurvivalTime(int survivalTime) {
+        this.survivalTime = survivalTime;
+    }
+
+    
+
+    public int getCountdown() {
+        return countdown;
+    }
+
+    
+
+    public Goose getGoose() {
+        return goose;
+    }
+
+    public int getCountdownStartTime() {
+        return countdownStartTime;
+    }
+
+    public PImage getImage() {
+      return image;
+    }
+
+    public int getSurvivalTime() {
+      return survivalTime;
+    }
+
+    public Pause getPause() {
+      return pause;
+    }
+
+    public int getLastTimeUpdate() {
+      return lastTimeUpdate;
+    }
+    
+    public ObstacleManager getManager() {
+      return manager;
+    }
+
+void draw(){  
+  background(getImage());
+
+  if(!countdownActive){
+    setGameOver(getManager().update(getPause().isPaused()));
+    
+    if (!getPause().isPaused() && millis() - getLastTimeUpdate() >= 1000) {
+      setSurvivalTime(getSurvivalTime()+1);
+      setLastTimeUpdate( millis());
+    }
+
+      getManager().draw();
+      getGoose().draw();
+      getPause().draw();
 
     if(gameOver){
-      background(image);
+      background(getImage());
       fill(255, 255, 255);
       textSize(50);
       textAlign(CENTER, CENTER);
-      text(survivalTime + "s", width / 2, height / 2 + 50);
+      text(getSurvivalTime() + "s", width / 2, height / 2 + 50);
       
       fill(255, 0, 0);
       textSize(50);
       textAlign(CENTER, CENTER);
       text("Game Over", width / 2, height / 2);
-      if(survivalTime < 30){
+      if(getSurvivalTime() < 30){
         textSize(50);
         textAlign(CENTER, CENTER);
         text(")-:", width / 2, height / 2 + 100);
@@ -59,8 +135,8 @@ void draw(){
 
     
   }else{
-    int elapsed = (millis() - countdownStartTime) / 1000;
-    int timeLeft = countdown - elapsed; 
+    int elapsed = (millis() - getCountdownStartTime()) / 1000;
+    int timeLeft = getCountdown() - elapsed; 
 
     if(timeLeft > 0){
       fill(255);
@@ -69,24 +145,24 @@ void draw(){
       text("Riprende in: " + timeLeft, width / 2, height / 2);
     }else{
       countdownActive = false;
-      pause.resume();
+      getPause().resume();
     }
   }
 }
 
 void mousePressed(){ 
-  if(pause.isClicked(mouseX, mouseY)){
-    if(pause.isPaused()){      
+  if(getPause().isClicked(mouseX, mouseY)){
+    if(getPause().isPaused()){      
       countdownActive = true;
-      countdownStartTime = millis();
+      setCountdownStartTime(millis());
     }else{
-      pause.mouseClicked();
+      getPause().mouseClicked();
     }
   }
 }
 
 void keyPressed(){
   if(key == ' '){
-    goose.flap();
+    getGoose().flap();
   }
 }

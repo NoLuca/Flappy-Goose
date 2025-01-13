@@ -1,4 +1,4 @@
-class Obstacle{
+class Obstacle {
     float x;
     float y;
     float size;
@@ -6,7 +6,55 @@ class Obstacle{
     float speedY;
     color obstacleColor;
 
-    Obstacle(){
+    public color getObstacleColor() {
+        return obstacleColor;
+    }
+
+    public float getSize() {
+        return size;
+    }
+
+    public float getSpeedX() {
+        return speedX;
+    }
+
+    public float getSpeedY() {
+        return speedY;
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public void setObstacleColor(color obstacleColor) {
+        this.obstacleColor = obstacleColor;
+    }
+
+    public void setSize(float size) {
+        this.size = size;
+    }
+
+    public void setSpeedX(float speedX) {
+        this.speedX = speedX;
+    }
+
+    public void setSpeedY(float speedY) {
+        this.speedY = speedY;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    Obstacle() {
         size = random(50, 75);
         x = width;
         y = random(height);
@@ -15,32 +63,35 @@ class Obstacle{
         obstacleColor = color(60, 50, 46);
     }
 
-    void draw(){
+    void draw() {
+        // Disegno dei triangoli
         fill(255, 30, 0);
-        triangle(x, y-size/2, x, y+size/2, x+size*2, y);
-      
+        triangle(getX(), getY() - getSize() / 2, getX(), getY() + getSize() / 2, getX() + getSize() * 2, getY());
+
         fill(255, 165, 0);
-        triangle(x, y-size/2, x, y+size/2, x+size, y);
-      
-        fill(obstacleColor);
+        triangle(getX(), getY() - getSize() / 2, getX(), getY() + getSize() / 2, getX() + getSize(), getY());
+
+        // Sostituzione del cerchio con un quadrato
+        fill(getObstacleColor());
         noStroke();
-        ellipse(x, y, size, size);
+        rect(getX() - getSize() / 2, getY() - getSize() / 2, getSize(), getSize()); // Quadrato centrato
     }
 
-    void update(){
-        x += speedX;
-        y += speedY;
+    void update() {
+        setX(getX() + getSpeedX());
+        setY(getY() + getSpeedY());
 
-        if(y < 0 || y + size > height){
-            speedY *= -1;
+        if (y < 0 || y + getSize() > height) {
+            setSpeedY(getSpeedY() * -1);
         }
     }
 
-    boolean isOffScreen(){
-        return x + size < 0;
+    boolean isOffScreen() {
+        return getX() + getSize() < 0;
     }
-    
-    Collision getHitBox(){
-        return new Collision(x, y, size, size, true);
+
+    Collision getHitBox() {
+        // Hitbox rettangolare
+        return new Collision(getX() - getSize() / 2, getY() - getSize() / 2, getSize(), getSize());
     }
 }
